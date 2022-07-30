@@ -25,6 +25,12 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
             },
           },
+          SimpleOffset: {
+            screens:{
+              SimpleOffSetScreen: 'SimpleOffSet',
+            },
+            
+          },
         },
       },
       Modal: 'modal',

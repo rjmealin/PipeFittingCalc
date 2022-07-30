@@ -18,6 +18,7 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import SimpleOffSetScreen from '../screens/SimpleOffSetScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -89,6 +90,14 @@ function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: 'Tab Two',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="SimpleOffset"
+        component={SimpleOffSetScreen}
+        options={{
+          title: 'Simple Offset',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
