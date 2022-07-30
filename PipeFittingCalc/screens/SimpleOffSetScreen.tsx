@@ -16,6 +16,7 @@ export default function SimpleOffSetScreen() {
       let rise:number = parseFloat(numRise);
       let run:number = parseFloat(numRun);
       let theta:number = parseFloat(numAngle);
+      let thetaRad:number;
       let travel:number = 0;
       let travelSq:number;
       let trigMult:number;
@@ -23,6 +24,7 @@ export default function SimpleOffSetScreen() {
       let hasRun:boolean = true;
       let hasTheta:boolean = true;
 
+      
       //check to see what inputs the user has entered
       if (rise === 0 || rise === null || numRise === ""){
         hasRise = false;
@@ -41,18 +43,20 @@ export default function SimpleOffSetScreen() {
         travelSq = rise**2 + run**2
         travel = Math.sqrt(travelSq)
       } else if(hasRun && hasTheta){
-        trigMult = Math.cos(theta);
+        thetaRad = theta*degToRad
+        trigMult = parseFloat(Math.cos(thetaRad).toFixed(3));
         if (trigMult === 0){
           return;
         } else {
           travel = run/trigMult;
         }
       } else if (hasRise && hasTheta){
-        trigMult = Math.sin(theta);
+        thetaRad = theta*degToRad 
+        trigMult = parseFloat(Math.sin(thetaRad).toFixed(3));
         if(trigMult === 0){
           return;
         } else {
-          travel = run/trigMult;
+          travel = rise/trigMult;
         }
       }
 
@@ -111,6 +115,8 @@ export default function SimpleOffSetScreen() {
 
   );
 }
+
+const degToRad:number = 0.01745533
 
 const styles = StyleSheet.create({
   container: {
