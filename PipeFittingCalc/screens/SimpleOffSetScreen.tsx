@@ -5,6 +5,7 @@ import { Text, View } from '../components/Themed';
 import { useState, useEffect } from 'react';
 import { Keyboard } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
+import { TrigCalculations } from '../constants/TrigCalculations';
 
 export default function SimpleOffSetScreen() {
     const [numRise, SetRise] = useState('');
@@ -37,22 +38,27 @@ export default function SimpleOffSetScreen() {
       }
       if (hasRun && hasRise && hasTheta){
         console.log("triple stop test")
+        alert("Please only enter two items")
         return;
       }
       if(hasRun && hasRise){
         travelSq = rise**2 + run**2
         travel = Math.sqrt(travelSq)
       } else if(hasRun && hasTheta){
-        thetaRad = theta*degToRad
-        trigMult = parseFloat(Math.cos(thetaRad).toFixed(3));
+
+        //trigMult = parseFloat(Math.cos(thetaRad).toFixed(3));
+
+        TrigCalculations.ComputeTravel(false,false,true,theta, run);
+
         if (trigMult === 0){
           return;
         } else {
           travel = run/trigMult;
         }
       } else if (hasRise && hasTheta){
-        thetaRad = theta*degToRad 
+
         trigMult = parseFloat(Math.sin(thetaRad).toFixed(3));
+
         if(trigMult === 0){
           return;
         } else {
@@ -107,16 +113,13 @@ export default function SimpleOffSetScreen() {
         />
         <Button
           title="Calculate travel"
-          color="#BEEEEF"
-          onPress={calculate}
+          onPress={calculate}         
         />
       </View>
     </TouchableWithoutFeedback>
 
   );
 }
-
-const degToRad:number = 0.01745533
 
 const styles = StyleSheet.create({
   container: {
@@ -139,5 +142,10 @@ const styles = StyleSheet.create({
   },
   normText: {
     fontSize:14
+  },
+  Button: {
+    borderColor: 'black',
+    borderRadius: 5,
+
   }
 });

@@ -20,9 +20,9 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabOneScreen: 'one',
             },
           },
-          TabTwo: {
+          FittingMiter: {
             screens: {
-              TabTwoScreen: 'two',
+              FittingMiter: 'FittingMiter',
             },
           },
           SimpleOffset: {
