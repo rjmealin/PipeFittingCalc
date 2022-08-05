@@ -17,10 +17,8 @@ export default function SimpleOffSetScreen() {
       let rise:number = parseFloat(numRise);
       let run:number = parseFloat(numRun);
       let theta:number = parseFloat(numAngle);
-      let thetaRad:number;
       let travel:number = 0;
       let travelSq:number;
-      let trigMult:number;
       let hasRise:boolean = true;
       let hasRun:boolean = true;
       let hasTheta:boolean = true;
@@ -45,28 +43,16 @@ export default function SimpleOffSetScreen() {
         travelSq = rise**2 + run**2
         travel = Math.sqrt(travelSq)
       } else if(hasRun && hasTheta){
-
-        //trigMult = parseFloat(Math.cos(thetaRad).toFixed(3));
-
-        TrigCalculations.ComputeTravel(false,false,true,theta, run);
-
-        if (trigMult === 0){
-          return;
-        } else {
-          travel = run/trigMult;
-        }
+        travel = TrigCalculations.ComputeTravel(true,false,false,theta, run);
+        
       } else if (hasRise && hasTheta){
-
-        trigMult = parseFloat(Math.sin(thetaRad).toFixed(3));
-
-        if(trigMult === 0){
-          return;
-        } else {
-          travel = rise/trigMult;
-        }
+        travel = TrigCalculations.ComputeTravel( false, true, false, theta, rise);
       }
-
       SetTravel(travel.toString())
+
+      if (travel === -1 ){
+       SetTravel("Incorrect numbers") 
+      }
   }
 
   return (
