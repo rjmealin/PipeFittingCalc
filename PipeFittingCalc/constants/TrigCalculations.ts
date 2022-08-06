@@ -1,3 +1,5 @@
+import { MiterResultModel } from "./Models";
+
 export class TrigCalculations {
     static DegToRad:number = 0.01745533;
 
@@ -14,5 +16,28 @@ export class TrigCalculations {
             return -1;
         }
 
+    }
+
+    public static ComputeMiter(pipeDia:number, theta:number, isLongRad?:boolean, isShortRad?:boolean, pipeRad?:number):MiterResultModel {
+        
+        let miterResult:MiterResultModel = new MiterResultModel(pipeDia);
+        miterResult.PipeDia = pipeDia;
+
+        if (pipeRad != null ){
+            miterResult.PipeRadius = pipeRad;
+        }
+
+        if (isLongRad) {
+            miterResult.PipeRadius = pipeDia * 1.5;
+        }else if (isShortRad) {
+            miterResult.PipeRadius = pipeDia;
+        } 
+
+        miterResult.TakeOff = miterResult.PipeRadius * Math.tan(theta/2);
+        miterResult.InnerThroatLength = ((miterResult.PipeRadius) - (pipeDia/2)) * this.DegToRad * theta;
+        miterResult.OuterThroatLength = ((miterResult.PipeRadius) + (pipeDia/2)) * this.DegToRad * theta;
+
+
+        return miterResult;
     }
 }
