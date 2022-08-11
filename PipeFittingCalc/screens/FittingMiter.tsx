@@ -4,13 +4,24 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { Keyboard } from 'react-native';
 import { useState, useEffect } from 'react';
+import { Button } from 'react-native';
+import { TrigCalculations } from '../constants/TrigCalculations';
+
 
 export default function CustomMiter() {
   const [numDia, SetPipeDia] = useState('');
   const [numTheta, SetTheta] = useState('');
-  const [numTravel, SetTravel] = useState('');
-  const [numAngle, SetAngle] = useState('');
+  const [numTkOff, SetTkOff] = useState('');
+  const [numIT, SetIT] = useState('');
+  const [numOT, SetOT] = useState('');
 
+  function calculate() {
+    
+    let result = TrigCalculations.ComputeMiter(parseFloat(numDia), parseFloat(numTheta), true, false);
+    SetTkOff(result.TakeOff.toString());
+    SetIT(result.InnerThroatLength.toString());
+    SetOT(result.OuterThroatLength.toString());
+  }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -34,6 +45,37 @@ export default function CustomMiter() {
           onSubmitEditing={Keyboard.dismiss}
           onChangeText={text => SetTheta(text)}
           value={numTheta}
+        />
+        <Text style={styles.normText}>Output Take-off:</Text>
+        <TextInput
+          style = {styles.Input}
+          placeholder = "Take-off"
+          keyboardType='numeric' 
+          onSubmitEditing={Keyboard.dismiss}
+          editable={false}
+          value={numTkOff}
+        />
+        <Text style={styles.normText}>Inner throat length:</Text>
+        <TextInput
+          style = {styles.Input}
+          placeholder = "Take-off"
+          keyboardType='numeric' 
+          onSubmitEditing={Keyboard.dismiss}
+          editable={false}
+          value={numIT}
+        />
+        <Text style={styles.normText}>Outer Throat Length:</Text>
+        <TextInput
+          style = {styles.Input}
+          placeholder = "Take-off"
+          keyboardType='numeric' 
+          onSubmitEditing={Keyboard.dismiss}
+          editable={false}
+          value={numOT}
+        />
+        <Button
+          title="Calculate Take-off"
+          onPress={calculate}         
         />
         
       </View>

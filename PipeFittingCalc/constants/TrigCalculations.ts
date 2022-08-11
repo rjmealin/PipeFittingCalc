@@ -32,11 +32,10 @@ export class TrigCalculations {
         }else if (isShortRad) {
             miterResult.PipeRadius = pipeDia;
         } 
-
-        miterResult.TakeOff = miterResult.PipeRadius * Math.tan(theta/2);
+        
+        miterResult.TakeOff = miterResult.PipeRadius * Math.tan((theta*this.DegToRad)/2);
         miterResult.InnerThroatLength = ((miterResult.PipeRadius) - (pipeDia/2)) * this.DegToRad * theta;
         miterResult.OuterThroatLength = ((miterResult.PipeRadius) + (pipeDia/2)) * this.DegToRad * theta;
-
 
         return miterResult;
     }
