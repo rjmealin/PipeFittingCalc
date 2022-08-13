@@ -28,6 +28,8 @@ export type RootTabParamList = {
   TabOne: undefined;
   FittingMiter: undefined;
   SimpleOffset: undefined;
+  PipeWeight: undefined;
+  RiggingCalc: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

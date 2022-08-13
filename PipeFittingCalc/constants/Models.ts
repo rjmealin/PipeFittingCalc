@@ -16,3 +16,20 @@ export class MiterResultModel {
     public PipeRadius:number;
 
 }
+
+export class PipeWeightModel {
+
+    constructor ( pipeD:number, pipeL:number, pipeWT:number ) {
+        this.PipeDia = pipeD;
+        this.PipeLength = pipeL;
+        this.WallThickness = pipeWT;
+    }
+
+    public PipeDia: number;
+    public PipeWeight: number = 0;
+    public PipeLength: number;
+    public WallThickness:number;
+    public WaterWeight:number = 0;
+    public MetalWeight:number = 0;
+
+}

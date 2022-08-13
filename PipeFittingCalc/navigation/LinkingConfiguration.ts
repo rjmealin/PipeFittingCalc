@@ -31,6 +31,16 @@ const linking: LinkingOptions<RootStackParamList> = {
             },
             
           },
+          PipeWeight: {
+            screens:{
+              PipeWeight: 'PipeWeight',
+            },
+          },
+          RiggingCalc: {
+            screens:{
+              RiggingCalc: 'RiggingCalc'
+            },
+          },
         },
       },
       Modal: 'modal',

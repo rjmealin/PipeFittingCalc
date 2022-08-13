@@ -19,6 +19,8 @@ import CustomMiter from '../screens/FittingMiter';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import SimpleOffSetScreen from '../screens/SimpleOffSetScreen';
+import PipeWeight from '../screens/PipeWeight';
+import RiggingCalc from '../screens/RiggingCalc';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -101,6 +103,22 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+      <BottomTab.Screen
+        name="PipeWeight"
+        component={PipeWeight}
+        options={{
+          title: 'Pipe Weight',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+      name="RiggingCalc"
+      component={RiggingCalc}
+      options={{
+        title: 'Rigging Calculator',
+        tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+      }}
+    />
     </BottomTab.Navigator>
   );
 }
