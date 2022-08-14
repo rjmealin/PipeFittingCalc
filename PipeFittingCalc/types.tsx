@@ -30,6 +30,7 @@ export type RootTabParamList = {
   SimpleOffset: undefined;
   PipeWeight: undefined;
   RiggingCalc: undefined;
+  EqualSpread: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

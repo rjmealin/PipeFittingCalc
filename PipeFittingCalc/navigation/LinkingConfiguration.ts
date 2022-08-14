@@ -41,6 +41,11 @@ const linking: LinkingOptions<RootStackParamList> = {
               RiggingCalc: 'RiggingCalc'
             },
           },
+          EqualSpread: {
+            screens: {
+              EqualSpread: 'EqualSpread'
+            },
+          },
         },
       },
       Modal: 'modal',

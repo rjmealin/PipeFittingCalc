@@ -21,6 +21,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import SimpleOffSetScreen from '../screens/SimpleOffSetScreen';
 import PipeWeight from '../screens/PipeWeight';
 import RiggingCalc from '../screens/RiggingCalc';
+import EqualSpread from '../screens/EqualSpread';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -118,7 +119,15 @@ function BottomTabNavigator() {
         title: 'Rigging Calculator',
         tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
       }}
-    />
+      />
+      <BottomTab.Screen
+      name="EqualSpread"
+      component={EqualSpread}
+      options={{
+        title: 'Equal Spread',
+        tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+      }}
+      />
     </BottomTab.Navigator>
   );
 }

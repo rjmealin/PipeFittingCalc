@@ -33,3 +33,58 @@ export class PipeWeightModel {
     public MetalWeight:number = 0;
 
 }
+
+export class EqualSpreadOffsetModel {
+
+    constructor ( pipeDia1: number, pipeDia2:number, spread:number, angle: number ){
+        this.PipeDiameter1 = pipeDia1;
+        this.Angle = angle;
+        this.Spread = spread;
+        this.PipeDiameter2 = pipeDia2;
+    }
+
+    public PipeDiameter1:number;
+    public PipeDiameter2:number;
+    public Spread: number;
+    public Angle: number;
+    public StepAhead?: number;
+
+    
+
+}
+
+export class SimpleOffsetModel {
+
+    constructor ( pipeDia:number, run?:number, rise?:number, angle?:number) {
+
+        this.PipeDiameter = pipeDia;
+        this.Run = run;
+        this.Rise = rise;
+        this.Angle = angle;
+
+    }
+
+    public PipeDiameter:number;
+    public Run?:number;
+    public Rise?:number;
+    public Travel?:number;
+    public Angle?:number;
+    public CutLength?:number;
+
+}
+
+export class DecimalFtToFtInModel {
+
+    constructor(feet:number, inches:number, den:number, numerator:number) {
+        this.Feet = feet;
+        this.Inches = inches;
+        this.Denom = den;
+        this.Numerator = numerator;
+    }
+
+    public Feet:number;
+    public Inches:number;
+    public Denom:number;
+    public Numerator:number;
+
+}
