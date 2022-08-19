@@ -6,16 +6,22 @@ import { useState, useEffect } from 'react';
 import { Keyboard } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
 import { TrigCalculations } from '../constants/TrigCalculations';
+import { Pressable } from 'react-native';
+import { MeasurementModel } from '../constants/Models';
 
 export default function SimpleOffSetScreen() {
-    const [numRise, SetRise] = useState('');
-    const [numRun, SetRun] = useState('');
+    const [numRiseFt, SetRiseFt] = useState('');
+    const [numRiseInch, SetRiseInch] = useState('');
+    const [numRunFt, SetRunFt] = useState('');
+    const [numRunInch, SetRunInch] = useState('');
     const [numTravel, SetTravel] = useState('');
     const [numAngle, SetAngle] = useState('');
 
     function calculate() {
-      let rise:number = parseFloat(numRise);
-      let run:number = parseFloat(numRun);
+      let rise:MeasurementModel = new MeasurementModel(parseFloat(numRiseFt), parseFloat(numRiseInch));
+
+      let run:MeasurementModel = new MeasurementModel();
+      
       let theta:number = parseFloat(numAngle);
       let travel:number = 0;
       let travelSq:number;
@@ -25,10 +31,10 @@ export default function SimpleOffSetScreen() {
 
       
       //check to see what inputs the user has entered
-      if (rise === 0 || rise === null || numRise === ""){
+      if (rise === 0 || rise === null){
         hasRise = false;
       }
-      if (run === 0 || run === null || numRun === ""){
+      if (run === 0 || run === null){
         hasRun = false;
       }
       if (theta === 0 || theta === null || numAngle === ""){
@@ -40,13 +46,13 @@ export default function SimpleOffSetScreen() {
         return;
       }
       if(hasRun && hasRise){
-        travelSq = rise**2 + run**2
+        travelSq = rise.DecimalFeet ** 2 + run.DecimalFeet ** 2;
         travel = Math.sqrt(travelSq)
       } else if(hasRun && hasTheta){
-        travel = TrigCalculations.ComputeTravel(true,false,false,theta, run);
+        travel = TrigCalculations.ComputeTravel(true,false,false,theta, run.DecimalFeet);
         
       } else if (hasRise && hasTheta){
-        travel = TrigCalculations.ComputeTravel( false, true, false, theta, rise);
+        travel = TrigCalculations.ComputeTravel( false, true, false, theta, rise.DecimalFeet);
       }
       SetTravel(travel.toString())
 
@@ -61,24 +67,50 @@ export default function SimpleOffSetScreen() {
         <Text style={styles.normText}>Please enter only two</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <Text style={styles.normText}>Enter Rise:</Text>
-        <TextInput
+        
+        
+        <View style={styles.container1}>
+          <TextInput
+            style={styles.Input}
+            placeholder = "Feet"
+            keyboardType='numeric'
+            onSubmitEditing={Keyboard.dismiss}
+            value={numRiseFt}
+            onChangeText={text => SetRiseFt(text)}
+          />        
+          <TextInput
           style = {styles.Input}
-          //value = {number}
-          placeholder = "Rise"
+          placeholder = "Inches"
           keyboardType='numeric'
           onSubmitEditing={Keyboard.dismiss}
-          value={numRise}
-          onChangeText={text => SetRise(text)}
-        />
+          value={numRiseInch}
+          onChangeText={text => SetRiseInch(text)}
+          />
+        </View>
+
+
         <Text style={styles.normText}>Enter Run:</Text>
-        <TextInput
-          style = {styles.Input}
-          placeholder = "Run"
-          keyboardType='numeric'
-          onSubmitEditing={Keyboard.dismiss}
-          value={numRun}
-          onChangeText={text => SetRun(text)} 
-        />
+        <View style={styles.container1}
+        >
+          <TextInput
+            style = {styles.Input}
+            placeholder = "Feet"
+            keyboardType='numeric'
+            onSubmitEditing={Keyboard.dismiss}
+            value={numRunFt}
+            onChangeText={text => SetRunFt(text)} 
+          />
+          <TextInput
+            style = {styles.Input}
+            placeholder = "Inches"
+            keyboardType='numeric'
+            onSubmitEditing={Keyboard.dismiss}
+            value={numRunInch}
+            onChangeText={text => SetRunInch(text)} 
+          />
+        </View>
+
+
         <Text style={styles.normText}>Enter Angle:</Text>
         <TextInput
           style = {styles.Input}
@@ -99,8 +131,11 @@ export default function SimpleOffSetScreen() {
         />
         <Button
           title="Calculate travel"
-          onPress={calculate}         
+          onPress={calculate}        
         />
+        <Pressable style={styles.Button} onPress={calculate}>
+          <Text style={styles.buttonText}>Calculate Travel</Text>
+        </Pressable>
       </View>
     </TouchableWithoutFeedback>
 
@@ -112,6 +147,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    backgroundColor: '#4A6DE5'
+  },
+  container1: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: '#4A6DE5'
   },
   title: {
     fontSize: 20,
@@ -125,13 +168,23 @@ const styles = StyleSheet.create({
   Input: {
     height: 40,
     width: '40%',
+    backgroundColor: '#ffffff',
+    borderRadius: 5,
+    
   },
   normText: {
-    fontSize:14
+    fontSize:14,
+    color: '#CED8F7',
+    padding: 10,
   },
   Button: {
     borderColor: 'black',
     borderRadius: 5,
+    backgroundColor: '#ffffff',
+    padding: 12,
 
+  },
+  buttonText : {
+    color: '#000000'
   }
 });

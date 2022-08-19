@@ -73,18 +73,25 @@ export class SimpleOffsetModel {
 
 }
 
-export class DecimalFtToFtInModel {
+export class MeasurementModel {
 
-    constructor(feet:number, inches:number, den:number, numerator:number) {
-        this.Feet = feet;
-        this.Inches = inches;
-        this.Denom = den;
-        this.Numerator = numerator;
+    constructor(feet?:number, inches?:number, den?:number, numerator?:number, decimalFeet?:number) {
+        
+        if (feet != null && inches != null && den != null && numerator != null) {
+            this.Feet = feet;
+            this.Inches = inches;
+            this.Denom = den;
+            this.Numerator = numerator;
+        } else if (decimalFeet != null) {
+            this.DecimalFeet = decimalFeet
+        }
+        
+
     }
-
-    public Feet:number;
-    public Inches:number;
-    public Denom:number;
-    public Numerator:number;
+    public Feet?:number;
+    public Inches?:number;
+    public Denom?:number;
+    public Numerator?:number;
+    public DecimalFeet?:number;
 
 }
