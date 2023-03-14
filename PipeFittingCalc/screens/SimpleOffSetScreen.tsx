@@ -12,6 +12,8 @@ import { MeasurementModel } from '../constants/Models';
 export default function SimpleOffSetScreen() {
     const [numRiseFt, SetRiseFt] = useState('');
     const [numRiseInch, SetRiseInch] = useState('');
+    const [numRiseDen, SetRiseDen] = useState('');
+    const [numRiseNumerator, SetRiseNumerator] = useState('');
     const [numRunFt, SetRunFt] = useState('');
     const [numRunInch, SetRunInch] = useState('');
     const [numTravel, SetTravel] = useState('');
@@ -28,13 +30,12 @@ export default function SimpleOffSetScreen() {
       let hasRise:boolean = true;
       let hasRun:boolean = true;
       let hasTheta:boolean = true;
-
       
       //check to see what inputs the user has entered
-      if (rise === 0 || rise === null){
+      if (rise.DecimalFeet === 0 || rise === null){
         hasRise = false;
       }
-      if (run === 0 || run === null){
+      if (run.DecimalFeet === 0 || run === null){
         hasRun = false;
       }
       if (theta === 0 || theta === null || numAngle === ""){
@@ -66,9 +67,9 @@ export default function SimpleOffSetScreen() {
       <View style={styles.container}>
         <Text style={styles.normText}>Please enter only two</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Text style={styles.normText}>Enter Rise:</Text>
-        
-        
+                
+
+        <Text style={styles.normText}>Enter Rise:</Text>        
         <View style={styles.container1}>
           <TextInput
             style={styles.Input}
@@ -86,12 +87,29 @@ export default function SimpleOffSetScreen() {
           value={numRiseInch}
           onChangeText={text => SetRiseInch(text)}
           />
+          <View style={styles.container2}>
+            <TextInput
+            style = {styles.Input2}
+            placeholder = "Inches"
+            keyboardType='numeric'
+            onSubmitEditing={Keyboard.dismiss}
+            value={numRiseDen}
+            onChangeText={text => SetRiseDen(text)}
+            />
+            <TextInput
+            style = {styles.Input2}
+            placeholder = "Inches"
+            keyboardType='numeric'
+            onSubmitEditing={Keyboard.dismiss}
+            value={numRiseNumerator}
+            onChangeText={text => SetRiseNumerator(text)}
+            />
+          </View>
         </View>
 
 
         <Text style={styles.normText}>Enter Run:</Text>
-        <View style={styles.container1}
-        >
+        <View style={styles.container1}>
           <TextInput
             style = {styles.Input}
             placeholder = "Feet"
@@ -154,7 +172,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#4A6DE5'
+    backgroundColor: '#4A6DE5',
+    borderColor: '#000000',
+    borderWidth: 1,
+  },
+  container2: {
+    flexDirection: 'column',
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: '#4A6DE5',
+    borderColor: '#000000',
+    borderWidth: 1,
+    width: 25,
   },
   title: {
     fontSize: 20,
@@ -167,10 +197,19 @@ const styles = StyleSheet.create({
   },
   Input: {
     height: 40,
-    width: '40%',
+    width: '20%',
     backgroundColor: '#ffffff',
     borderRadius: 5,
-    
+    margin: 10,
+    padding: 10,
+  },
+  Input2:{
+    height: 40,
+    width: '80%',
+    backgroundColor: '#ffffff',
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
   },
   normText: {
     fontSize:14,

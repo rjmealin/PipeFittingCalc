@@ -95,3 +95,14 @@ export class MeasurementModel {
     public DecimalFeet?:number;
 
 }
+
+//Might not need, not sure why this is here
+export class DecimalFtToFtInModel{
+
+    constructor(feet:number, inches:number, den:number, num:number){}
+
+
+    public Feet:number;
+    public Inches:number;
+    public Denom
+}

@@ -1,4 +1,4 @@
-import { DecimalFtToFtInModel } from "./Models";
+import { MeasurementModel } from "./Models";
 
 export class BasicConversions {
 
@@ -18,7 +18,7 @@ export class BasicConversions {
         
     }
 
-    public static ConvertDecimalFtToFtIn(decFeet:number):DecimalFtToFtInModel {
+    public static ConvertDecimalFtToFtIn(decFeet:number):MeasurementModel {
         
         let feet:number;
         let inches:number;
@@ -37,7 +37,7 @@ export class BasicConversions {
 
         
         
-        return new DecimalFtToFtInModel(feet, inches, den, numerator)
+        return new MeasurementModel(feet, inches, den, numerator)
 
     }
 }
