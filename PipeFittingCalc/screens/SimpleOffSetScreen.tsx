@@ -8,6 +8,7 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { TrigCalculations } from '../constants/TrigCalculations';
 import { Pressable } from 'react-native';
 import { MeasurementModel } from '../constants/Models';
+import React from 'react';
 
 export default function SimpleOffSetScreen() {
     const [numRiseFt, SetRiseFt] = useState('');

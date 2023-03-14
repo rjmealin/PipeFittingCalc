@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Button } from 'react-native';
 import { TrigCalculations } from '../constants/TrigCalculations';
 import { GeometricCalc } from '../constants/GeometricCalc';
+import React from 'react';
 
 
 export default function EqualSpread() {

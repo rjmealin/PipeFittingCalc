@@ -6,6 +6,7 @@ import { Keyboard } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-native';
 import { TrigCalculations } from '../constants/TrigCalculations';
+import React from 'react';
 
 
 export default function CustomMiter() {
@@ -28,6 +29,8 @@ export default function CustomMiter() {
         <View style={styles.container}>
         <Text style={styles.title}>Custom Miter fitting</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <Text style={styles.normText}>Select a radius type:</Text>
+
         <Text style={styles.normText}>Enter Pipe Diameter:</Text>
         <TextInput
           style = {styles.Input}
@@ -46,7 +49,7 @@ export default function CustomMiter() {
           onChangeText={text => SetTheta(text)}
           value={numTheta}
         />
-        <Text style={styles.normText}>Output Take-off:</Text>
+        <Text style={styles.normText}>Fitting Take-off:</Text>
         <TextInput
           style = {styles.Input}
           placeholder = "Take-off"
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'#eee'
   },
   title: {
     fontSize: 20,
@@ -102,8 +106,15 @@ const styles = StyleSheet.create({
   Input: {
     height: 40,
     width: '40%',
+    backgroundColor:'#fff',
+    padding:5,
+    margin:10,
+    borderRadius:10
   },
   normText: {
     fontSize:14
   },
+  button: {
+    backgroundColor:'#ddd'
+  }
 });
